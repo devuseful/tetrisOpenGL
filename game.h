@@ -1,4 +1,4 @@
-//game.h
+п»ї//game.h
 
 #ifndef _GAME_H_
 #define _GAME_H_
@@ -62,24 +62,24 @@ protected:
 	void _checkDeath();
 	void _addGamePoint(int point);
 
-	int grid_[ROWS][COLS];						// 0 - не рисовать больше 0 - рисовать цветом
-	int pos_;									// колонка в которой находится блок
-	int row_;									// строка в которой находится блок
-	bool rowCleared_;							// удалить строку
-	int clearedRowTag_;							// удаляемая сторка
-	bool killed_;								// если жизнь закончилась
-	bool flashOn_;								// мигание полоски при удалении
+	int grid_[ROWS][COLS];						// 0 - РЅРµ СЂРёСЃРѕРІР°С‚СЊ Р±РѕР»СЊС€Рµ 0 - СЂРёСЃРѕРІР°С‚СЊ С†РІРµС‚РѕРј
+	int pos_;									// РєРѕР»РѕРЅРєР° РІ РєРѕС‚РѕСЂРѕР№ РЅР°С…РѕРґРёС‚СЃСЏ Р±Р»РѕРє
+	int row_;									// СЃС‚СЂРѕРєР° РІ РєРѕС‚РѕСЂРѕР№ РЅР°С…РѕРґРёС‚СЃСЏ Р±Р»РѕРє
+	bool rowCleared_;							// СѓРґР°Р»РёС‚СЊ СЃС‚СЂРѕРєСѓ
+	int clearedRowTag_;							// СѓРґР°Р»СЏРµРјР°СЏ СЃС‚РѕСЂРєР°
+	bool killed_;								// РµСЃР»Рё Р¶РёР·РЅСЊ Р·Р°РєРѕРЅС‡РёР»Р°СЃСЊ
+	bool flashOn_;								// РјРёРіР°РЅРёРµ РїРѕР»РѕСЃРєРё РїСЂРё СѓРґР°Р»РµРЅРёРё
 
 	int gamePoint_;
-	int linesCleared_;							// очищено линий
-	bool paused_;								// пауза
-	int timer_;									// скорость игры
-	int timerStart_;							// скорость игры начальная
+	int linesCleared_;							// РѕС‡РёС‰РµРЅРѕ Р»РёРЅРёР№
+	bool paused_;								// РїР°СѓР·Р°
+	int timer_;									// СЃРєРѕСЂРѕСЃС‚СЊ РёРіСЂС‹
+	int timerStart_;							// СЃРєРѕСЂРѕСЃС‚СЊ РёРіСЂС‹ РЅР°С‡Р°Р»СЊРЅР°СЏ
 
-	int nextBlock_;								// следующий блок
-	int currentBlock_;							// текущий блок
-	int orientation_;							// ориентация блока	
-	int numTimes_[7];							// сколько раз выпал блок
+	int nextBlock_;								// СЃР»РµРґСѓСЋС‰РёР№ Р±Р»РѕРє
+	int currentBlock_;							// С‚РµРєСѓС‰РёР№ Р±Р»РѕРє
+	int orientation_;							// РѕСЂРёРµРЅС‚Р°С†РёСЏ Р±Р»РѕРєР°	
+	int numTimes_[7];							// СЃРєРѕР»СЊРєРѕ СЂР°Р· РІС‹РїР°Р» Р±Р»РѕРє
 	int level_;
 };
 

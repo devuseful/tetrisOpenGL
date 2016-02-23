@@ -1,4 +1,4 @@
-// drawing.h
+﻿// drawing.h
 
 #ifndef _DRAWING_H_
 #define _DRAWING_H_

@@ -1,8 +1,8 @@
-//game.cpp
+п»ї//game.cpp
 
 #include "game.h"
 
-// конструктор
+// РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 Game::Game() {
 	currentBlock_ = rand() % NUM_BLOCK_TYPES;
 	this->restart();
@@ -10,11 +10,11 @@ Game::Game() {
 	nextBlock_ = rand() % NUM_BLOCK_TYPES;
 }
 
-// деструктор
+// РґРµСЃС‚СЂСѓРєС‚РѕСЂ
 Game::~Game() {
 }
 
-// начать игру заново
+// РЅР°С‡Р°С‚СЊ РёРіСЂСѓ Р·Р°РЅРѕРІРѕ
 void Game::restart() {
 	for (int i = 0; i < NUM_BLOCK_TYPES; i++) {
 		numTimes_[i] = 0;
@@ -32,7 +32,7 @@ void Game::restart() {
 	level_ = 1;
 }
 
-//функция двигает и вращает блоки
+//С„СѓРЅРєС†РёСЏ РґРІРёРіР°РµС‚ Рё РІСЂР°С‰Р°РµС‚ Р±Р»РѕРєРё
 void Game::move(int direction, int rotate) {
 	if (direction < 0 && pos_ > 1 && !this->checkCollision(false, true, false, orientation_))
 		pos_--;
@@ -55,8 +55,8 @@ void Game::move(int direction, int rotate) {
 }
 
 
-// функция удаляет строку помеченную к удалению
-// и вызывает обновление стакана
+// С„СѓРЅРєС†РёСЏ СѓРґР°Р»СЏРµС‚ СЃС‚СЂРѕРєСѓ РїРѕРјРµС‡РµРЅРЅСѓСЋ Рє СѓРґР°Р»РµРЅРёСЋ
+// Рё РІС‹Р·С‹РІР°РµС‚ РѕР±РЅРѕРІР»РµРЅРёРµ СЃС‚Р°РєР°РЅР°
 void Game::clearRow() {
 	rowCleared_ = false;
 	linesCleared_++;
@@ -66,7 +66,7 @@ void Game::clearRow() {
 	this->_update(clearedRowTag_);
 }
 
-// функция переключает блок
+// С„СѓРЅРєС†РёСЏ РїРµСЂРµРєР»СЋС‡Р°РµС‚ Р±Р»РѕРє
 void Game::switchBlock() {
 	timer_ = timerStart_;
 	this->_blockToGrid();
@@ -82,7 +82,7 @@ void Game::switchBlock() {
 }
 
 
-// функция обработки столкновений
+// С„СѓРЅРєС†РёСЏ РѕР±СЂР°Р±РѕС‚РєРё СЃС‚РѕР»РєРЅРѕРІРµРЅРёР№
 bool Game::checkCollision(bool down, bool left, bool rotate, int orient) {
 	BrickBlock block = blockTemplates[currentBlock_][orient];
 	int rotateOffset = 0;
@@ -96,7 +96,7 @@ bool Game::checkCollision(bool down, bool left, bool rotate, int orient) {
 
 					if (block.h - row_ == 0)
 						return true;
-					else if (grid_[row_ - i - 2][pos_ + j - 1] != -1) // если блок будет снизу
+					else if (grid_[row_ - i - 2][pos_ + j - 1] != -1) // РµСЃР»Рё Р±Р»РѕРє Р±СѓРґРµС‚ СЃРЅРёР·Сѓ
 						return true;
 				}
 				else if (left) {
@@ -200,7 +200,7 @@ int Game::getLevel() {
 
 
 
-// функция очищает стакан или находит ряд для очистки
+// С„СѓРЅРєС†РёСЏ РѕС‡РёС‰Р°РµС‚ СЃС‚Р°РєР°РЅ РёР»Рё РЅР°С…РѕРґРёС‚ СЂСЏРґ РґР»СЏ РѕС‡РёСЃС‚РєРё
 void Game::_clearGrid(bool clearRow) {
 	if (!clearRow) {
 		for (int r = 0; r < ROWS; r++) {
@@ -228,7 +228,7 @@ void Game::_clearGrid(bool clearRow) {
 }
 
 
-// функция перемещает всю кучу блоков вниз
+// С„СѓРЅРєС†РёСЏ РїРµСЂРµРјРµС‰Р°РµС‚ РІСЃСЋ РєСѓС‡Сѓ Р±Р»РѕРєРѕРІ РІРЅРёР·
 void Game::_update(int rowCleared) {
 	for (int r = rowCleared; r < ROWS - 2; r++) {
 		for (int c = 0; c < COLS; c++) {
@@ -240,7 +240,7 @@ void Game::_update(int rowCleared) {
 }
 
 
-// функция добавляет блок в стакан
+// С„СѓРЅРєС†РёСЏ РґРѕР±Р°РІР»СЏРµС‚ Р±Р»РѕРє РІ СЃС‚Р°РєР°РЅ
 void Game::_blockToGrid() {
 	BrickBlock piece = blockTemplates[currentBlock_][orientation_];
 	for (int i = 0; i < NUM_POS; i++) {
@@ -253,14 +253,14 @@ void Game::_blockToGrid() {
 }
 
 
-// функция проверяет проиграл игрок или нет
+// С„СѓРЅРєС†РёСЏ РїСЂРѕРІРµСЂСЏРµС‚ РїСЂРѕРёРіСЂР°Р» РёРіСЂРѕРє РёР»Рё РЅРµС‚
 void Game::_checkDeath() {
 	if (grid_[ROWS - 1][COLS / 2] != -1) {
 		killed_ = true;
 	}
 }
 
-// функция прибавляет очки, увеличивает уровень и скорость
+// С„СѓРЅРєС†РёСЏ РїСЂРёР±Р°РІР»СЏРµС‚ РѕС‡РєРё, СѓРІРµР»РёС‡РёРІР°РµС‚ СѓСЂРѕРІРµРЅСЊ Рё СЃРєРѕСЂРѕСЃС‚СЊ
 void Game::_addGamePoint(int point) {
 	if (gamePoint_ / kLevelStep  < (gamePoint_ + point) / kLevelStep) {
 		level_++;

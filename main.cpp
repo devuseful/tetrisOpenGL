@@ -1,4 +1,4 @@
-// main.cpp
+п»ї// main.cpp
 
 #include <cstdio>
 #include <cstdlib>
@@ -18,11 +18,11 @@ Game game;
 Drawing drawing;
 
 
-// таймер
+// С‚Р°Р№РјРµСЂ
 void timer(int id)
 {
 	if (!game.isPaused()) {
-		// проигрыш или удаление строки
+		// РїСЂРѕРёРіСЂС‹С€ РёР»Рё СѓРґР°Р»РµРЅРёРµ СЃС‚СЂРѕРєРё
 		if (game.isKilled() || game.isRowCleared()) {
 			game.switchFlashOn();
 			if (id < 3) {
@@ -40,7 +40,7 @@ void timer(int id)
 			glutPostRedisplay();
 		}
 		else {
-			// обычный режим
+			// РѕР±С‹С‡РЅС‹Р№ СЂРµР¶РёРј
 			if (game.isKilled()) {
 				glutTimerFunc(100, timer, 1);
 			}
@@ -69,7 +69,7 @@ void init() {
 	glLoadIdentity();
 }
 
-// функция отрисовки паузы
+// С„СѓРЅРєС†РёСЏ РѕС‚СЂРёСЃРѕРІРєРё РїР°СѓР·С‹
 void pause() {
 	glViewport(80, 0, windowWidth, windowHeight);
 	init();
@@ -82,7 +82,7 @@ void pause() {
 	glutSwapBuffers();
 }
 
-// функция обработки паузы и выхода из игры
+// С„СѓРЅРєС†РёСЏ РѕР±СЂР°Р±РѕС‚РєРё РїР°СѓР·С‹ Рё РІС‹С…РѕРґР° РёР· РёРіСЂС‹
 void keyboard(unsigned char key, int x, int y) {
 	if (key == 'p') {
 		game.switchPaused();
@@ -100,7 +100,7 @@ void keyboard(unsigned char key, int x, int y) {
 	}
 }
 
-// функция обработки клавиатуры (движение вращение)
+// С„СѓРЅРєС†РёСЏ РѕР±СЂР°Р±РѕС‚РєРё РєР»Р°РІРёР°С‚СѓСЂС‹ (РґРІРёР¶РµРЅРёРµ РІСЂР°С‰РµРЅРёРµ)
 void special(int key, int x, int y)
 {
 	if (!game.isPaused() && !game.isKilled()) {
@@ -124,7 +124,7 @@ void special(int key, int x, int y)
 }
 
 
-// функция отрисовки блоков
+// С„СѓРЅРєС†РёСЏ РѕС‚СЂРёСЃРѕРІРєРё Р±Р»РѕРєРѕРІ
 void displayTetriminos(BrickBlock tetrimino, int x, int y) {
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
@@ -135,7 +135,7 @@ void displayTetriminos(BrickBlock tetrimino, int x, int y) {
 	}
 }
 
-// функция отрисовки блоков лежащих на земле
+// С„СѓРЅРєС†РёСЏ РѕС‚СЂРёСЃРѕРІРєРё Р±Р»РѕРєРѕРІ Р»РµР¶Р°С‰РёС… РЅР° Р·РµРјР»Рµ
 void displayGrid() {
 	for (int r = 0; r<ROWS; r++) {
 		for (int c = 0; c<COLS; c++) {
@@ -148,7 +148,7 @@ void displayGrid() {
 	}
 }
 
-//функция выводит анимацию при очистке строки
+//С„СѓРЅРєС†РёСЏ РІС‹РІРѕРґРёС‚ Р°РЅРёРјР°С†РёСЋ РїСЂРё РѕС‡РёСЃС‚РєРµ СЃС‚СЂРѕРєРё
 void displayAnimation() {
 	if (game.isRowCleared()) {
 		if (game.isFlashOn() == true) {
@@ -168,7 +168,7 @@ void display(void){
 	init();
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	//отрисовка следующего блока
+	//РѕС‚СЂРёСЃРѕРІРєР° СЃР»РµРґСѓСЋС‰РµРіРѕ Р±Р»РѕРєР°
 	glViewport(0, 0, 110, windowHeight);
 	init();
 	gluOrtho2D(0, COLS - 1, 0, ROWS);
@@ -179,11 +179,11 @@ void display(void){
 	init();
 	glOrtho(-1, COLS - 1, 0, ROWS, -1, 1);
 
-	// полоска
+	// РїРѕР»РѕСЃРєР°
 	drawing.setColor(Drawing::kBlack);
 	drawing.drawLine(0, 0, 0, ROWS);
 
-	// отрисовать сетку
+	// РѕС‚СЂРёСЃРѕРІР°С‚СЊ СЃРµС‚РєСѓ
 	drawing.setColor(Drawing::kGray);
 	for (int r = 0; r < COLS; r++) {
 		drawing.drawLine(r, 0, r, ROWS);
@@ -195,11 +195,11 @@ void display(void){
 	displayGrid();
 	displayAnimation();
 
-	//отрисовка блоков
+	//РѕС‚СЂРёСЃРѕРІРєР° Р±Р»РѕРєРѕРІ
 	BrickBlock currBlock = blockTemplates[game.getCurrentBlock()][game.getOrientation()];
 	displayTetriminos(currBlock, game.getPos(), game.getRow());
 
-	//отрисовка следующего блока
+	//РѕС‚СЂРёСЃРѕРІРєР° СЃР»РµРґСѓСЋС‰РµРіРѕ Р±Р»РѕРєР°
 	glViewport(5, 350, windowWidth - 60, windowHeight - 60);
 	init();
 	gluOrtho2D(-2, COLS - 3, 0, ROWS - 3);
@@ -207,11 +207,11 @@ void display(void){
 	BrickBlock nextBlock = blockTemplates[game.getNextBlock()][0];
 	displayTetriminos(nextBlock, 0, (ROWS - 8) / 2);
 
-	//отрисовка информации
+	//РѕС‚СЂРёСЃРѕРІРєР° РёРЅС„РѕСЂРјР°С†РёРё
 	glViewport(10, 55, 125, 350);
 	init();
 	gluOrtho2D(-2, COLS, 0, ROWS + 11);
-	//нарисовать маленькие блоки
+	//РЅР°СЂРёСЃРѕРІР°С‚СЊ РјР°Р»РµРЅСЊРєРёРµ Р±Р»РѕРєРё
 	for (int i = 0; i < NUM_BLOCK_TYPES; i++) {
 		BrickBlock smallBlock = blockTemplates[i][0];
 		if (i == 1)
@@ -220,7 +220,7 @@ void display(void){
 			displayTetriminos(smallBlock, 0, ROWS + 10 - i * 4);
 	}
 
-	//вывод надписей с количеством блоков
+	//РІС‹РІРѕРґ РЅР°РґРїРёСЃРµР№ СЃ РєРѕР»РёС‡РµСЃС‚РІРѕРј Р±Р»РѕРєРѕРІ
 	glViewport(30, 55, 125, 350);
 	init();
 	gluOrtho2D(-2, COLS, 0, ROWS + 10);
@@ -231,7 +231,7 @@ void display(void){
 		drawing.displayText(m, 0, ROWS + 10 - i * 4 - 2);
 	}
 
-	//вывод надписей 
+	//РІС‹РІРѕРґ РЅР°РґРїРёСЃРµР№ 
 	init();
 	glViewport(5, 10, windowWidth, 50);
 	gluOrtho2D(0, 100, 0, 600);
